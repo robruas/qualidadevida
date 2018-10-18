@@ -35,8 +35,8 @@ public class AlunoFacade {
 		return alunoBusiness.obterAlunos();
 	}
 
-	public void incluirAlunos(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
-		alunoBusiness.incluirAlunos(alunoDTO);
+	public void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
+		alunoBusiness.salvar(alunoDTO);
 	}
 
 	public void incluirAgendaAluno(final AgendaDTO agendaDTO)

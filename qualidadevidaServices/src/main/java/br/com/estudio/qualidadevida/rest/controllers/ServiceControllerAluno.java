@@ -36,7 +36,7 @@ public class ServiceControllerAluno {
 	@ApiOperation(value = "Obter lista de alunos")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Alunos não localizado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Alunos Localizado") })
-	public List<AlunoDTO> buscaAlunos() throws PilatesAPIException {
+	public List<AlunoDTO> obterAlunos() throws PilatesAPIException {
 		try {
 			return alunoFacade.obterAlunos();
 		} catch (final PilatesAppSystemException e) {
@@ -51,9 +51,9 @@ public class ServiceControllerAluno {
 	@ApiOperation(value = "Cadastro aluno")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Aluno não cadastrado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Aluno cadastrado") })
-	public void incluirAgenda(@RequestBody @Valid AlunoDTO alunoDTO) throws PilatesAPIException {
+	public void salvar(@RequestBody @Valid AlunoDTO alunoDTO) throws PilatesAPIException {
 		try {
-			alunoFacade.incluirAlunos(alunoDTO);
+			alunoFacade.salvar(alunoDTO);
 		} catch (final PilatesAppSystemException e) {
 			throw new PilatesAPIException(e.getMessage(), e, Status.NOT_FOUND);
 		} catch (final PilatesAppBusinessException e) {

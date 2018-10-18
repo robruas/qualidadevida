@@ -65,7 +65,7 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 	}
     
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void incluirAlunos(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
+	public void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
 			AlunoEntity alunoEntity = AlunoBusinessHelp.obterAlunoEntity(alunoDTO);
 			alunoDAO.save(alunoEntity);

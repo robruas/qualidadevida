@@ -10,7 +10,7 @@ public interface AlunoBusinessLocal {
 
 	List<AlunoDTO> obterAlunos() throws PilatesAppSystemException, PilatesAppBusinessException;
 
-	void incluirAlunos(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException;
+	void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException;
 	
 	
 }
