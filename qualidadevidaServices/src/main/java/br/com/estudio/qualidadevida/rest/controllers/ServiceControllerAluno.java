@@ -11,9 +11,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.estudio.qualidadevida.dto.AlunoDTO;
@@ -22,7 +24,6 @@ import br.com.estudio.qualidadevida.exception.PilatesAppBusinessException;
 import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
 import br.com.estudio.qualidadevida.facade.AlunoFacade;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -51,14 +52,14 @@ public class ServiceControllerAluno {
 	
 	
 	@Produces(MediaType.APPLICATION_JSON)
-	@GetMapping("/{id}")
+	@GetMapping("/{alunnoId}")
 	@ApiOperation(value = "Obter lista de alunos")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Alunos não localizado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Alunos Localizado") })
-	public AlunoDTO obterAlunoPorId(@PathParam("id") final Integer codigoAluno)
+	public @ResponseBody AlunoDTO obterAlunoPorId(@PathVariable final Integer alunnoId)
 			throws PilatesAPIException {
 		try {
-			return alunoFacade.obterAlunoPorId(codigoAluno);
+			return alunoFacade.obterAlunoPorId(alunnoId);
 		} catch (final PilatesAppSystemException e) {
 			throw new PilatesAPIException(e.getMessage(), e, Status.NOT_FOUND);
 		} catch (final PilatesAppBusinessException e) {

@@ -33,6 +33,11 @@ public class AlunoFacade {
 	}
 	
 	public AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException {
+		
+		if(codigoAluno == null) {
+			throw new PilatesAppBusinessException("Codigo Aluno Nulo");
+		}
+		
 		return alunoBusiness.obterAlunoPorId(codigoAluno);
 	}
 
