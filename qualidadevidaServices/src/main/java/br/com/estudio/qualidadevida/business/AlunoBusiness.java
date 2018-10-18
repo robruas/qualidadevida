@@ -56,7 +56,7 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 	public List<AlunoDTO> obterAlunos() throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
 			List<AlunoEntity> listaAlunoEntity = alunoDAO.findAll();
-			return AlunoBusinessHelp.obterListaAlunosDTO(listaAlunoEntity);
+			return AlunoBusinessHelp.obterListaAlunos(listaAlunoEntity);
 
 		} catch (Exception e) {
 			final String msg = "Erro ao buscar alunos";
@@ -81,6 +81,16 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 			}
 		} catch (RuntimeException e) {
 			final String msg = "Erro ao incluir Aluno";
+			throw new PilatesAppBusinessException(msg, e);
+		}
+	}
+
+	
+	public AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException {
+		try {
+			return  AlunoBusinessHelp.obterAlunoDTO(this.alunoDAO.getById(codigoAluno));
+		} catch (Exception e) {
+			final String msg = "Erro ao buscar alunos";
 			throw new PilatesAppBusinessException(msg, e);
 		}
 	}

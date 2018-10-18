@@ -20,7 +20,7 @@ import br.com.estudio.qualidadevida.dto.FaturamentoAulaDTO;
 import br.com.estudio.qualidadevida.exception.PilatesAPIException;
 import br.com.estudio.qualidadevida.exception.PilatesAppBusinessException;
 import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
-import br.com.estudio.qualidadevida.facade.AlunoFacade;
+import br.com.estudio.qualidadevida.facade.AgendaFacade;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -30,16 +30,16 @@ import io.swagger.annotations.ApiResponses;
 public class ServiceControllerAgenda {
 
 	@Inject
-	private AlunoFacade alunoFacade;
+	private AgendaFacade agendaFacade;
 	
 	@PostMapping
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Cadastro aluno")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Aluno não cadastrado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Aluno cadastrado") })
-	public void incluirAluno(@RequestBody @Valid AgendaDTO agendaDTO) throws PilatesAPIException {
+	public void salvar(@RequestBody @Valid AgendaDTO agendaDTO) throws PilatesAPIException {
 		try {
-			alunoFacade.incluirAgendaAluno(agendaDTO);
+			agendaFacade.salvar(agendaDTO);
 		} catch (final PilatesAppSystemException e) {
 			throw new PilatesAPIException(e.getMessage(), e, Status.NOT_FOUND);
 		} catch (final PilatesAppBusinessException e) {
@@ -52,9 +52,9 @@ public class ServiceControllerAgenda {
 	@ApiOperation(value = "Obter agenda")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Agenda não localizado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Agenda Localizado") })
-	public @ResponseBody FaturamentoAulaDTO buscarAgenda() throws PilatesAPIException {
+	public @ResponseBody FaturamentoAulaDTO obterFaturamento() throws PilatesAPIException {
 		try {
-			return alunoFacade.obterFaturamento(); 
+			return agendaFacade.obterFaturamento(); 
 		} catch (final PilatesAppSystemException e) {
 			throw new PilatesAPIException(e.getMessage(), e, Status.NOT_FOUND);
 		} catch (final PilatesAppBusinessException e) {

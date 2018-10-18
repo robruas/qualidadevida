@@ -62,7 +62,7 @@ public class AgendaBusiness implements AgendaBusinessLocal {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public void incluirAgendaAluno(AgendaDTO agendaDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
+	public void salvar(AgendaDTO agendaDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
 			AgendaEntity agendaEntity = AgendaBusinessHelp.obterAgendaEntity(agendaDTO);
 			this.agendaDAO.save(agendaEntity);

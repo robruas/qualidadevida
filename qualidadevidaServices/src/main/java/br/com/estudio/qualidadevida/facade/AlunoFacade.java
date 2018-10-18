@@ -7,10 +7,7 @@ import javax.inject.Named;
 
 import br.com.estudio.qualidadevida.business.local.AgendaBusinessLocal;
 import br.com.estudio.qualidadevida.business.local.AlunoBusinessLocal;
-import br.com.estudio.qualidadevida.dto.AgendaDTO;
 import br.com.estudio.qualidadevida.dto.AlunoDTO;
-import br.com.estudio.qualidadevida.dto.AulaDTO;
-import br.com.estudio.qualidadevida.dto.FaturamentoAulaDTO;
 import br.com.estudio.qualidadevida.exception.PilatesAppBusinessException;
 import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
 
@@ -34,18 +31,14 @@ public class AlunoFacade {
 	public List<AlunoDTO> obterAlunos() throws PilatesAppSystemException, PilatesAppBusinessException {
 		return alunoBusiness.obterAlunos();
 	}
+	
+	public AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException {
+		return alunoBusiness.obterAlunoPorId(codigoAluno);
+	}
 
 	public void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
 		alunoBusiness.salvar(alunoDTO);
 	}
 
-	public void incluirAgendaAluno(final AgendaDTO agendaDTO)
-			throws PilatesAppSystemException, PilatesAppBusinessException {
-		agendaBusiness.incluirAgendaAluno(agendaDTO);
-	}
-
-	public FaturamentoAulaDTO obterFaturamento() throws PilatesAppSystemException, PilatesAppBusinessException {
-		return agendaBusiness.obterFaturamento();
-	}
 
 }

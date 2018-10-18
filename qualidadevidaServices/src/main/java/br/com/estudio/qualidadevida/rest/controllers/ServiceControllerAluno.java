@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
@@ -21,6 +22,7 @@ import br.com.estudio.qualidadevida.exception.PilatesAppBusinessException;
 import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
 import br.com.estudio.qualidadevida.facade.AlunoFacade;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -46,6 +48,27 @@ public class ServiceControllerAluno {
 		}
 		
 	}
+	
+	
+	@Produces(MediaType.APPLICATION_JSON)
+	@GetMapping("/{id}")
+	@ApiOperation(value = "Obter lista de alunos")
+	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Alunos não localizado")
+	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Alunos Localizado") })
+	public AlunoDTO obterAlunoPorId(@PathParam("id") final Integer codigoAluno)
+			throws PilatesAPIException {
+		try {
+			return alunoFacade.obterAlunoPorId(codigoAluno);
+		} catch (final PilatesAppSystemException e) {
+			throw new PilatesAPIException(e.getMessage(), e, Status.NOT_FOUND);
+		} catch (final PilatesAppBusinessException e) {
+			throw new PilatesAPIException(e.getMessage(), e, Status.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
+	
+	
 	@PostMapping()
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Cadastro aluno")

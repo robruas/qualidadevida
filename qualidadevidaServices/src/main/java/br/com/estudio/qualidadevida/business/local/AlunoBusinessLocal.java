@@ -12,5 +12,7 @@ public interface AlunoBusinessLocal {
 
 	void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException;
 	
+	AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException;
+	
 	
 }

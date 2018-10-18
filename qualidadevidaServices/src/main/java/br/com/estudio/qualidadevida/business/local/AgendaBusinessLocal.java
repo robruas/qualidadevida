@@ -8,6 +8,6 @@ import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
 public interface AgendaBusinessLocal {
 
 	
-	void incluirAgendaAluno(final AgendaDTO agendaDTO) throws PilatesAppSystemException, PilatesAppBusinessException;
+	void salvar(final AgendaDTO agendaDTO) throws PilatesAppSystemException, PilatesAppBusinessException;
 	FaturamentoAulaDTO obterFaturamento() throws PilatesAppSystemException, PilatesAppBusinessException;
 }
