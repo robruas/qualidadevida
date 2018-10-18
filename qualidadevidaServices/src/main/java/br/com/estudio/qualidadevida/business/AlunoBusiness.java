@@ -86,9 +86,9 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 	}
 
 	
-	public AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException {
+	public AlunoDTO obterAlunoPorId(final Integer alunoId) throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
-			return  AlunoBusinessHelp.obterAlunoDTO(this.alunoDAO.getById(codigoAluno));
+			return  AlunoBusinessHelp.obterAlunoDTO(this.alunoDAO.getById(alunoId));
 		} catch (Exception e) {
 			final String msg = "Erro ao buscar alunos";
 			throw new PilatesAppBusinessException(msg, e);

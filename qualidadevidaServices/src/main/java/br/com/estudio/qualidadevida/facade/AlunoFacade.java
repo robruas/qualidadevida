@@ -32,13 +32,13 @@ public class AlunoFacade {
 		return alunoBusiness.obterAlunos();
 	}
 	
-	public AlunoDTO obterAlunoPorId(final Integer codigoAluno) throws PilatesAppSystemException, PilatesAppBusinessException {
+	public AlunoDTO obterAlunoPorId(final Integer alunoId) throws PilatesAppSystemException, PilatesAppBusinessException {
 		
-		if(codigoAluno == null) {
+		if(alunoId == null) {
 			throw new PilatesAppBusinessException("Codigo Aluno Nulo");
 		}
 		
-		return alunoBusiness.obterAlunoPorId(codigoAluno);
+		return alunoBusiness.obterAlunoPorId(alunoId);
 	}
 
 	public void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
