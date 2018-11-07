@@ -158,14 +158,14 @@ public class AlunoEntity implements Serializable {
 	/**
 	 * @return the dataNacimento
 	 */
-	public Date getDataNacimento() {
+	public Date getDataNascimento() {
 		return dataNacimento;
 	}
 
 	/**
 	 * @param dataNacimento the dataNacimento to set
 	 */
-	public void setDataNacimento(Date dataNacimento) {
+	public void setDataNascimento(Date dataNacimento) {
 		this.dataNacimento = dataNacimento;
 	}
 

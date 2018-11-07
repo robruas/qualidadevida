@@ -1,19 +1,19 @@
 package br.com.estudio.qualidadevida.enuns;
 
-public enum EnumTipoTelefone {
+public enum EnumTipoContato {
 
 	COMERCIAL("C"), RESIDENCIAL("R"), CELULAR("L");
 
 	private String tipo;
 
-	EnumTipoTelefone(String tipo) {
+	EnumTipoContato(String tipo) {
 		this.tipo = tipo;
 	}
 
-	public static EnumTipoTelefone getEnumTipoTelefone(final String tipo) {
-		EnumTipoTelefone tipoTelefoneEnum = null;
+	public static EnumTipoContato getEnumTipoTelefone(final String tipo) {
+		EnumTipoContato tipoTelefoneEnum = null;
 
-		for (EnumTipoTelefone enumTipoTelefone : EnumTipoTelefone.values()) {
+		for (EnumTipoContato enumTipoTelefone : EnumTipoContato.values()) {
 			if (tipo.equals(enumTipoTelefone.getTipo())) {
 				tipoTelefoneEnum = enumTipoTelefone;
 				break;

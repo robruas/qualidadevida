@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EnderecoDTO implements Serializable{
+public class EnderecoDTO implements Serializable {
 
 	/**
 	 * 
@@ -16,8 +16,9 @@ public class EnderecoDTO implements Serializable{
 	private String complemento;
 	private int numeroLogradouro;
 	private String cep;
-	private String cidade;
-	private String estado;
+	private TipoEnderecoDTO tipoEndereco;
+	private CidadeDTO cidade;
+	private EstadoDTO estado;
 
 	/**
 	 * @return the id
@@ -90,43 +91,45 @@ public class EnderecoDTO implements Serializable{
 	}
 
 	/**
+	 * @return the tipoEndereco
+	 */
+	public TipoEnderecoDTO getTipoEndereco() {
+		return tipoEndereco;
+	}
+
+	/**
+	 * @param tipoEndereco the tipoEndereco to set
+	 */
+	public void setTipoEndereco(TipoEnderecoDTO tipoEndereco) {
+		this.tipoEndereco = tipoEndereco;
+	}
+
+	/**
 	 * @return the cidade
 	 */
-	public String getCidade() {
+	public CidadeDTO getCidade() {
 		return cidade;
 	}
 
 	/**
 	 * @param cidade the cidade to set
 	 */
-	public void setCidade(String cidade) {
+	public void setCidade(CidadeDTO cidade) {
 		this.cidade = cidade;
 	}
 
 	/**
 	 * @return the estado
 	 */
-	public String getEstado() {
+	public EstadoDTO getEstado() {
 		return estado;
 	}
 
 	/**
 	 * @param estado the estado to set
 	 */
-	public void setEstado(String estado) {
+	public void setEstado(EstadoDTO estado) {
 		this.estado = estado;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "EnderecoDTO [id=" + id + ", logradouro=" + logradouro + ", complemento=" + complemento
-				+ ", numeroLogradouro=" + numeroLogradouro + ", cep=" + cep + ", cidade=" + cidade + ", estado="
-				+ estado + "]";
 	}
 
 	/*
@@ -145,6 +148,7 @@ public class EnderecoDTO implements Serializable{
 		result = prime * result + id;
 		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + numeroLogradouro;
+		result = prime * result + ((tipoEndereco == null) ? 0 : tipoEndereco.hashCode());
 		return result;
 	}
 
@@ -190,6 +194,11 @@ public class EnderecoDTO implements Serializable{
 		} else if (!logradouro.equals(other.logradouro))
 			return false;
 		if (numeroLogradouro != other.numeroLogradouro)
+			return false;
+		if (tipoEndereco == null) {
+			if (other.tipoEndereco != null)
+				return false;
+		} else if (!tipoEndereco.equals(other.tipoEndereco))
 			return false;
 		return true;
 	}

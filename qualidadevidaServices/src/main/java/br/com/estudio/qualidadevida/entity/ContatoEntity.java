@@ -26,14 +26,11 @@ public class ContatoEntity implements Serializable {
 	@Column(name = "contato_id")
 	private Integer Id;
 
-	@Column(name = "ddd")
-	private int ddd;
-
 	@Column(name = "numero")
-	private int numero;
+	private String numero;
 
-	@Column(name = "tipo")
-	private String tipo;
+	@Column(name = "id_tipo_contato")
+	private int idTipoContato;
 
 	@ManyToOne
 	@JoinColumn(name = "aluno_id", referencedColumnName = "aluno_id")
@@ -54,45 +51,31 @@ public class ContatoEntity implements Serializable {
 	}
 
 	/**
-	 * @return the ddd
-	 */
-	public int getDdd() {
-		return ddd;
-	}
-
-	/**
-	 * @param ddd the ddd to set
-	 */
-	public void setDdd(int ddd) {
-		this.ddd = ddd;
-	}
-
-	/**
 	 * @return the numero
 	 */
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
 	/**
 	 * @param numero the numero to set
 	 */
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
 	/**
-	 * @return the tipo
+	 * @return the idTipoContato
 	 */
-	public String getTipo() {
-		return tipo;
+	public int getIdTipoContato() {
+		return idTipoContato;
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * @param idTipoContato the tipo to set
 	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setIdTipoContato(int idTipoContato) {
+		this.idTipoContato = idTipoContato;
 	}
 
 	/**

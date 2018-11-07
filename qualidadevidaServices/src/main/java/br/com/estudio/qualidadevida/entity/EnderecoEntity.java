@@ -23,6 +23,7 @@ public class EnderecoEntity implements Serializable {
 	public EnderecoEntity() {
 		super();
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "endereco_id")
@@ -40,11 +41,14 @@ public class EnderecoEntity implements Serializable {
 	@Column(name = "cep")
 	private String cep;
 
-	@Column(name = "cidade")
-	private String cidade;
+	@Column(name = "id_cidade")
+	private int idCidade;
 
-	@Column(name = "estado")
-	private String estado;
+	@Column(name = "id_estado")
+	private int idEstado;
+
+	@Column(name = "id_TipoEndereco")
+	private int idTipoEndereco;
 
 	@ManyToOne
 	@JoinColumn(name = "aluno_id", referencedColumnName = "aluno_id", nullable = false, insertable = true, updatable = true)
@@ -121,42 +125,56 @@ public class EnderecoEntity implements Serializable {
 	}
 
 	/**
-	 * @return the cidade
+	 * @return the idCidade
 	 */
-	public String getCidade() {
-		return cidade;
+	public int getIdCidade() {
+		return idCidade;
 	}
 
 	/**
-	 * @param cidade the cidade to set
+	 * @param idCidade the idCidade to set
 	 */
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setIdCidade(int idCidade) {
+		this.idCidade = idCidade;
 	}
 
 	/**
-	 * @return the estado
+	 * @return the idEstado
 	 */
-	public String getEstado() {
-		return estado;
+	public int getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param estado the estado to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setIdEstado(int idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	/**
-	 * @return the alunoEntity
+	 * @return the idTipoEndereco
 	 */
-	public AlunoEntity getAlunoEntity() {
+	public int getIdTipoEndereco() {
+		return idTipoEndereco;
+	}
+
+	/**
+	 * @param idTipoEndereco the idTipoEndereco to set
+	 */
+	public void setIdTipoEndereco(int idTipoEndereco) {
+		this.idTipoEndereco = idTipoEndereco;
+	}
+
+	/**
+	 * @return the aluno
+	 */
+	public AlunoEntity getAluno() {
 		return aluno;
 	}
 
 	/**
-	 * @param aluno the alunoEntity to set
+	 * @param aluno the aluno to set
 	 */
 	public void setAluno(AlunoEntity aluno) {
 		this.aluno = aluno;
@@ -172,6 +190,14 @@ public class EnderecoEntity implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
+		result = prime * result + idCidade;
+		result = prime * result + idEstado;
+		result = prime * result + idTipoEndereco;
+		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
+		result = prime * result + numeroLogradouro;
 		return result;
 	}
 
@@ -193,6 +219,34 @@ public class EnderecoEntity implements Serializable {
 			if (other.Id != null)
 				return false;
 		} else if (!Id.equals(other.Id))
+			return false;
+		if (aluno == null) {
+			if (other.aluno != null)
+				return false;
+		} else if (!aluno.equals(other.aluno))
+			return false;
+		if (cep == null) {
+			if (other.cep != null)
+				return false;
+		} else if (!cep.equals(other.cep))
+			return false;
+		if (complemento == null) {
+			if (other.complemento != null)
+				return false;
+		} else if (!complemento.equals(other.complemento))
+			return false;
+		if (idCidade != other.idCidade)
+			return false;
+		if (idEstado != other.idEstado)
+			return false;
+		if (idTipoEndereco != other.idTipoEndereco)
+			return false;
+		if (logradouro == null) {
+			if (other.logradouro != null)
+				return false;
+		} else if (!logradouro.equals(other.logradouro))
+			return false;
+		if (numeroLogradouro != other.numeroLogradouro)
 			return false;
 		return true;
 	}
