@@ -42,7 +42,7 @@ public class AgendaEntity implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "agenda_id")
+	@Column(name = "id_agenda")
 	private Integer agendaId;
 	
 	@Temporal(TemporalType.DATE)

@@ -9,9 +9,13 @@ import br.com.estudio.qualidadevida.dto.CidadeDTO;
 import br.com.estudio.qualidadevida.dto.ContatoDTO;
 import br.com.estudio.qualidadevida.dto.EnderecoDTO;
 import br.com.estudio.qualidadevida.dto.EstadoDTO;
+import br.com.estudio.qualidadevida.dto.TipoContatoDTO;
+import br.com.estudio.qualidadevida.dto.TipoEnderecoDTO;
 import br.com.estudio.qualidadevida.entity.AlunoEntity;
 import br.com.estudio.qualidadevida.entity.ContatoEntity;
 import br.com.estudio.qualidadevida.entity.EnderecoEntity;
+import br.com.estudio.qualidadevida.entity.TipoContatoEntity;
+import br.com.estudio.qualidadevida.entity.TipoEnderecoEntity;
 
 public class AlunoBusinessHelp {
 
@@ -45,7 +49,10 @@ public class AlunoBusinessHelp {
 		List<ContatoDTO> listaContatos = new ArrayList<ContatoDTO>();
 		for (ContatoEntity contatoEntity : alunoEntity.getContatos()) {
 			ContatoDTO contatoDTO = new ContatoDTO();
-			contatoDTO.setIdTipoContato(contatoEntity.getIdTipoContato());
+			contatoDTO.setTipoContato(new TipoContatoDTO());
+
+			contatoDTO.getTipoContato().setId(contatoEntity.getTipoContato().getId());
+			contatoDTO.getTipoContato().setDescricao(contatoEntity.getTipoContato().getDescricao());
 			contatoDTO.setId(contatoEntity.getId());
 			contatoDTO.setNumero(contatoEntity.getNumero());
 			listaContatos.add(contatoDTO);
@@ -60,7 +67,10 @@ public class AlunoBusinessHelp {
 			EnderecoDTO enderecoDTO = new EnderecoDTO();
 			enderecoDTO.setCidade(new CidadeDTO());
 			enderecoDTO.setEstado(new EstadoDTO());
+			enderecoDTO.setTipoEndereco(new TipoEnderecoDTO());
 			
+			enderecoDTO.getTipoEndereco().setDescricao(enderecoEntity.getTipoEndereco().getDescricao());
+			enderecoDTO.getTipoEndereco().setId(enderecoEntity.getTipoEndereco().getId());
 			enderecoDTO.setCep(enderecoEntity.getCep());
 			enderecoDTO.getCidade().setId(enderecoEntity.getIdCidade());
 			enderecoDTO.setComplemento(enderecoEntity.getComplemento());
@@ -89,6 +99,8 @@ public class AlunoBusinessHelp {
 
 	public static EnderecoEntity obterEnderecoEntity(final EnderecoDTO enderecoDTO) {
 		EnderecoEntity enderecoEntity = new EnderecoEntity();
+		enderecoEntity.setTipoEndereco(new TipoEnderecoEntity());
+		enderecoEntity.getTipoEndereco().setId(enderecoDTO.getTipoEndereco().getId());
 		enderecoEntity.setCep(enderecoDTO.getCep());
 		enderecoEntity.setIdCidade(enderecoDTO.getCidade().getId());
 		enderecoEntity.setComplemento(enderecoDTO.getComplemento());
@@ -101,7 +113,8 @@ public class AlunoBusinessHelp {
 
 	public static ContatoEntity obterContatoEntity(final ContatoDTO contatoDTO) {
 		ContatoEntity contatoEntity = new ContatoEntity();
-		contatoEntity.setIdTipoContato(contatoDTO.getIdTipoContato());
+		contatoEntity.setTipoContato(new TipoContatoEntity());
+		contatoEntity.getTipoContato().setId(contatoDTO.getTipoContato().getId());
 		contatoEntity.setNumero(contatoDTO.getNumero());
 		return contatoEntity;
 	}
@@ -116,6 +129,13 @@ public class AlunoBusinessHelp {
 		alunoDTO.setPeso(alunoEntity.getPeso());
 		alunoDTO.setProfissao(alunoEntity.getProfissao());
 		alunoDTO.setSobreNome(alunoEntity.getSobreNome());
+		
+		List<EnderecoDTO> listaEnderecos = obterListaEnderecos(alunoEntity);
+		List<ContatoDTO> listaContatos = obterListaContatos(alunoEntity);
+
+		alunoDTO.getContatos().addAll(listaContatos);
+		alunoDTO.getEnderecos().addAll(listaEnderecos);
+		
 		return alunoDTO;
 	}
 

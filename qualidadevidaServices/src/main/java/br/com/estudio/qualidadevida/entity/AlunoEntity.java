@@ -30,7 +30,7 @@ public class AlunoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "aluno_id")
+	@Column(name = "id_aluno")
 	private Integer Id;
 
 	@Column(name = "nome")
@@ -38,9 +38,6 @@ public class AlunoEntity implements Serializable {
 
 	@Column(name = "sobre_nome")
 	private String sobreNome;
-
-	@Column(name = "idade")
-	private int idade;
 
 	@Column(name = "altura")
 	private double altura;
@@ -112,21 +109,7 @@ public class AlunoEntity implements Serializable {
 	public void setSobreNome(String sobreNome) {
 		this.sobreNome = sobreNome;
 	}
-
-	/**
-	 * @return the idade
-	 */
-	public int getIdade() {
-		return idade;
-	}
-
-	/**
-	 * @param idade the idade to set
-	 */
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
+	
 	/**
 	 * @return the altura
 	 */

@@ -2,6 +2,7 @@ package br.com.estudio.qualidadevida.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,16 @@ public class ValoresAulaEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_valor")
 	private Integer id;
+	
+	@Column(name = "quantidade")
 	private Integer quantidadeAluno;
+	
+	@Column(name = "valor_aula")
 	private double valorAula;
+	
+	@Column(name = "reajuste")
 	private double reajuste;
 
 	/**

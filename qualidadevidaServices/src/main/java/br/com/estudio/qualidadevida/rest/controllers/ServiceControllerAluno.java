@@ -5,17 +5,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.estudio.qualidadevida.dto.AlunoDTO;
@@ -27,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/aluno")
 public class ServiceControllerAluno {
@@ -34,8 +32,7 @@ public class ServiceControllerAluno {
 	@Inject
 	private AlunoFacade alunoFacade;
 	
-	@Produces(MediaType.APPLICATION_JSON)
-	@GetMapping()
+	@GetMapping
 	@ApiOperation(value = "Obter lista de alunos")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Alunos não localizado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Alunos Localizado") })
@@ -51,12 +48,11 @@ public class ServiceControllerAluno {
 	}
 	
 	
-	@Produces(MediaType.APPLICATION_JSON)
 	@GetMapping("/{alunnoId}")
 	@ApiOperation(value = "Obter lista de alunos")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Alunos não localizado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Alunos Localizado") })
-	public @ResponseBody AlunoDTO obterAlunoPorId(@PathVariable final Integer alunnoId)
+	public AlunoDTO obterAlunoPorId(@PathVariable final Integer alunnoId)
 			throws PilatesAPIException {
 		try {
 			return alunoFacade.obterAlunoPorId(alunnoId);
@@ -68,10 +64,7 @@ public class ServiceControllerAluno {
 
 	}
 	
-	
-	
-	@PostMapping()
-	@Produces(MediaType.APPLICATION_JSON)
+	@PostMapping
 	@ApiOperation(value = "Cadastro aluno")
 	@ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "Aluno não cadastrado")
 	@ApiResponses({ @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Aluno cadastrado") })

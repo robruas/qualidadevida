@@ -24,19 +24,19 @@ public class AgendaAlunoEntity implements Serializable {
 	private String statusAula;
 
 	@Id
-	@Column(name = "agenda_id")
+	@Column(name = "id_agenda")
 	private Integer agendaId;
 
 	@Id
-	@Column(name = "aluno_id")
+	@Column(name = "id_aluno")
 	private Integer alunoId;
 
 	@OneToOne
-	@JoinColumn(name = "aluno_id", referencedColumnName = "aluno_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno", insertable = false, updatable = false)
 	private AlunoEntity aluno;
 
 	@ManyToOne
-	@JoinColumn(name = "agenda_id", referencedColumnName = "agenda_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id_agenda", referencedColumnName = "id_agenda", insertable = false, updatable = false)
 	private AgendaEntity agenda;
 
 	/**

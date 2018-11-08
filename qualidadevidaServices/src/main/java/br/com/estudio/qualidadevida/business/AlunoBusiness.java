@@ -28,12 +28,13 @@ import br.com.estudio.qualidadevida.exception.PilatesAppSystemException;
 
 @Named
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-@Qualifier("AlunoBusinessLocal")  
+@Qualifier("AlunoBusinessLocal")
 public class AlunoBusiness implements AlunoBusinessLocal {
 
 	public AlunoBusiness() {
 		super();
 	}
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -43,7 +44,6 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 	private EnderecoDAO enderecoDAO;
 	@Inject
 	private ContatoDAO contatoDAO;
-
 
 	@PostConstruct
 	public void init() {
@@ -63,7 +63,7 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 			throw new PilatesAppBusinessException(msg, e);
 		}
 	}
-    
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(final AlunoDTO alunoDTO) throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
@@ -85,10 +85,10 @@ public class AlunoBusiness implements AlunoBusinessLocal {
 		}
 	}
 
-	
-	public AlunoDTO obterAlunoPorId(final Integer alunoId) throws PilatesAppSystemException, PilatesAppBusinessException {
+	public AlunoDTO obterAlunoPorId(final Integer alunoId)
+			throws PilatesAppSystemException, PilatesAppBusinessException {
 		try {
-			return  AlunoBusinessHelp.obterAlunoDTO(this.alunoDAO.getById(alunoId));
+			return AlunoBusinessHelp.obterAlunoDTO(this.alunoDAO.getById(alunoId));
 		} catch (Exception e) {
 			final String msg = "Erro ao buscar alunos";
 			throw new PilatesAppBusinessException(msg, e);

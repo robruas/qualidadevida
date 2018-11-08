@@ -12,9 +12,8 @@ public class ContatoDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private int idTipoContato;
-	private String descricao;
 	private String numero;
+	private TipoContatoDTO tipoContato;
 
 	/**
 	 * @return the id
@@ -31,34 +30,6 @@ public class ContatoDTO implements Serializable {
 	}
 
 	/**
-	 * @return the codigo
-	 */
-	public int getIdTipoContato() {
-		return idTipoContato;
-	}
-
-	/**
-	 * @param idTipoContato the codigo to set
-	 */
-	public void setIdTipoContato(int idTipoContato) {
-		this.idTipoContato = idTipoContato;
-	}
-
-	/**
-	 * @return the descricao
-	 */
-	public String getDescricao() {
-		return descricao;
-	}
-
-	/**
-	 * @param descricao the descricao to set
-	 */
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	/**
 	 * @return the numero
 	 */
 	public String getNumero() {
@@ -72,6 +43,20 @@ public class ContatoDTO implements Serializable {
 		this.numero = numero;
 	}
 
+	/**
+	 * @return the tipoContato
+	 */
+	public TipoContatoDTO getTipoContato() {
+		return tipoContato;
+	}
+
+	/**
+	 * @param tipoContato the tipoContato to set
+	 */
+	public void setTipoContato(TipoContatoDTO tipoContato) {
+		this.tipoContato = tipoContato;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -81,10 +66,9 @@ public class ContatoDTO implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idTipoContato;
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((tipoContato == null) ? 0 : tipoContato.hashCode());
 		return result;
 	}
 
@@ -102,19 +86,17 @@ public class ContatoDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ContatoDTO other = (ContatoDTO) obj;
-		if (idTipoContato != other.idTipoContato)
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
 		if (id != other.id)
 			return false;
 		if (numero == null) {
 			if (other.numero != null)
 				return false;
 		} else if (!numero.equals(other.numero))
+			return false;
+		if (tipoContato == null) {
+			if (other.tipoContato != null)
+				return false;
+		} else if (!tipoContato.equals(other.tipoContato))
 			return false;
 		return true;
 	}

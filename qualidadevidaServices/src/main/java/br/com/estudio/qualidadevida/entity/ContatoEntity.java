@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,18 +24,19 @@ public class ContatoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "contato_id")
+	@Column(name = "id_contato")
 	private Integer Id;
 
 	@Column(name = "numero")
 	private String numero;
 
-	@Column(name = "id_tipo_contato")
-	private int idTipoContato;
-
 	@ManyToOne
-	@JoinColumn(name = "aluno_id", referencedColumnName = "aluno_id")
+	@JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno")
 	private AlunoEntity aluno;
+
+	@OneToOne
+	@JoinColumn(name = "id_tipo_contato", referencedColumnName = "id_tipo_contato")
+	private TipoContatoEntity tipoContato;
 
 	/**
 	 * @return the id
@@ -65,20 +67,6 @@ public class ContatoEntity implements Serializable {
 	}
 
 	/**
-	 * @return the idTipoContato
-	 */
-	public int getIdTipoContato() {
-		return idTipoContato;
-	}
-
-	/**
-	 * @param idTipoContato the tipo to set
-	 */
-	public void setIdTipoContato(int idTipoContato) {
-		this.idTipoContato = idTipoContato;
-	}
-
-	/**
 	 * @return the aluno
 	 */
 	public AlunoEntity getAluno() {
@@ -92,6 +80,20 @@ public class ContatoEntity implements Serializable {
 		this.aluno = aluno;
 	}
 
+	/**
+	 * @return the tipoContato
+	 */
+	public TipoContatoEntity getTipoContato() {
+		return tipoContato;
+	}
+
+	/**
+	 * @param tipoContato the tipoContato to set
+	 */
+	public void setTipoContato(TipoContatoEntity tipoContato) {
+		this.tipoContato = tipoContato;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -102,6 +104,9 @@ public class ContatoEntity implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((tipoContato == null) ? 0 : tipoContato.hashCode());
 		return result;
 	}
 
@@ -123,6 +128,21 @@ public class ContatoEntity implements Serializable {
 			if (other.Id != null)
 				return false;
 		} else if (!Id.equals(other.Id))
+			return false;
+		if (aluno == null) {
+			if (other.aluno != null)
+				return false;
+		} else if (!aluno.equals(other.aluno))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		if (tipoContato == null) {
+			if (other.tipoContato != null)
+				return false;
+		} else if (!tipoContato.equals(other.tipoContato))
 			return false;
 		return true;
 	}
